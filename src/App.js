@@ -4,15 +4,16 @@ import { jsx } from '@emotion/core'
 import Hammer from 'hammerjs'
 import Info from './Info'
 import './App.css'
+import Container from './components/Container';
 
 const Home = () => (
   <Fragment>
-    <div className="container">
+    <Container>
       <h3>attributes</h3>
-    </div>
-    <div className="container">
+    </Container>
+    <Container>
       <h3>equipment</h3>
-    </div>
+    </Container>
   </Fragment>
 )
 class App extends Component {

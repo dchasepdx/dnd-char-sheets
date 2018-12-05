@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@emotion/core": "^10.0.0",
+    "@emotion/styled": "^10.0.2",
     "hammerjs": "^2.0.8",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
@@ -15,13 +16,14 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
+
   "browserslist": [
     ">0.2%",
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "eslint-plugin-emotion": "^10.0.0"
+  }
 }

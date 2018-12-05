@@ -1,9 +1,10 @@
 import React from 'react'
+import Container from '../components/Container';
 
 const Info = () => (
-  <div className="container">
+  <Container>
     <h3>Character Info</h3>
-  </div>
+  </Container>
 )
 
 export default Info
