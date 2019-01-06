@@ -1,11 +1,20 @@
 /** @jsx jsx */
 import { Component, Fragment } from 'react'
 import { jsx } from '@emotion/core'
-import Hammer from 'hammerjs'
+import * as Hammer from 'hammerjs'
 import Info from './Info'
 import './App.css'
 import Container from './components/Container'
 import SliderTest from './components/SliderTest'
+
+export interface Props {}
+
+interface State {
+  // TODO: JESUS CHRIST TYPESCRIPT,
+  // I JUST WANNA DECLARE AN ARRAY OF FUNCTIONS, IS THAT SO HARD???
+  screens: object[]
+  activeView: number
+}
 
 const Home = () => (
   <Fragment>
@@ -17,7 +26,8 @@ const Home = () => (
     </Container>
   </Fragment>
 )
-class App extends Component {
+
+class App extends Component<Props, State> {
   state = {
     screens: [Home, Info],
     activeView: 0,
