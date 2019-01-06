@@ -1,10 +1,14 @@
 /** @jsx jsx */
+import { jsx, css } from '@emotion/core'
 import { Component, Fragment } from 'react'
-import { jsx } from '@emotion/core'
-import * as Hammer from 'hammerjs'
+import Hammer from 'hammerjs'
 import Info from './Info'
 import './App.css'
 import Container from './components/Container'
+
+// TODO: why do you need a jsx reference to avoid errors?
+// I think this sucks
+jsx
 
 export interface Props {}
 
@@ -38,14 +42,18 @@ class App extends Component<Props, State> {
     hammertime.on('swipeleft', () => {
       this.setState(state => {
         const activeView =
-          state.activeView === state.screens.length - 1 ? 0 : state.activeView + 1
+          state.activeView === state.screens.length - 1
+            ? 0
+            : state.activeView + 1
         return { activeView }
       })
     })
     hammertime.on('swiperight', () => {
       this.setState(state => {
         const activeView =
-          state.activeView === 0 ? state.screens.length - 1 : state.activeView - 1
+          state.activeView === 0
+            ? state.screens.length - 1
+            : state.activeView - 1
         return { activeView }
       })
     })
@@ -54,7 +62,12 @@ class App extends Component<Props, State> {
     const { activeView, screens } = this.state
     const View = screens[activeView]
     return (
-      <div css={{ color: 'hotpink' }} className="App">
+      <div
+        css={css`
+          color: hotpink;
+        `}
+        className="App"
+      >
         <View />
       </div>
     )
