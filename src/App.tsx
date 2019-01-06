@@ -5,6 +5,7 @@ import * as Hammer from 'hammerjs'
 import Info from './Info'
 import './App.css'
 import Container from './components/Container'
+import SliderTest from './components/SliderTest'
 
 export interface Props {}
 
@@ -30,32 +31,45 @@ class App extends Component<Props, State> {
   state = {
     screens: [Home, Info],
     activeView: 0,
+    sliding: false,
+    slideWidth: 300,
+    index: 0,
+    moveX: 0,
+    lastDeltaX: 0,
   }
 
   componentDidMount() {
-    const body = document.querySelector('body') as HTMLElement
+    const body = document.querySelector('#slider')
     var hammertime = new Hammer(body)
-    hammertime.on('swipeleft', () => {
-      this.setState(state => {
-        const activeView =
-          state.activeView === state.screens.length - 1 ? 0 : state.activeView + 1
-        return { activeView }
-      })
+
+    hammertime.on('pan', ev => {
+      console.log(ev.deltaX)
+      this.setState(state => ({
+        moveX: ev.deltaX / 4 + state.lastDeltaX,
+        sliding: true,
+      }))
     })
-    hammertime.on('swiperight', () => {
+
+    hammertime.on('panend', ev => {
       this.setState(state => {
-        const activeView =
-          state.activeView === 0 ? state.screens.length - 1 : state.activeView - 1
-        return { activeView }
+        const lastDeltaX =
+          Math.round((ev.deltaX / 4 + state.lastDeltaX) / 100) * 100
+        return {
+          lastDeltaX,
+          sliding: false,
+        }
       })
     })
   }
-  public render() {
-    const { activeView, screens } = this.state
+  render() {
+    const { activeView, screens, moveX, sliding, lastDeltaX } = this.state
+    // eslint-disable-next-line
     const View = screens[activeView]
     return (
-      <div css={{ color: 'hotpink' }} className="App">
-        <View />
+      <div className="App">
+        {/* <View className={animate} />
+        <span>{animate}</span> */}
+        <SliderTest moveX={moveX} sliding={sliding} lastDeltaX={lastDeltaX} />
       </div>
     )
   }
