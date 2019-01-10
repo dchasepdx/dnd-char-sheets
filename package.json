@@ -15,20 +15,20 @@
     "hammerjs": "^2.0.8",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
-    "react-scripts-ts": "4.0.8"
+    "react-scripts": "^2.1.3"
   },
   "scripts": {
-    "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build",
-    "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "eslint-plugin-emotion": "^10.0.0",
-    "@types/jest": "^23.3.11",
+    "@types/jest": "^23.3.12",
     "@types/node": "^10.12.18",
     "@types/react": "^16.7.18",
     "@types/react-dom": "^16.0.11",
+    "eslint-plugin-emotion": "^10.0.0",
     "typescript": "^3.2.2"
   }
 }

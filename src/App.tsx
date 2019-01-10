@@ -1,36 +1,20 @@
-/** @jsx jsx */
-import { Component, Fragment } from 'react'
-import { jsx } from '@emotion/core'
-import * as Hammer from 'hammerjs'
-import Info from './Info'
+import React, { Component } from 'react'
+import Hammer from 'hammerjs'
 import './App.css'
-import Container from './components/Container'
 import SliderTest from './components/SliderTest'
 
 export interface Props {}
 
 interface State {
-  // TODO: JESUS CHRIST TYPESCRIPT,
-  // I JUST WANNA DECLARE AN ARRAY OF FUNCTIONS, IS THAT SO HARD???
-  screens: object[]
-  activeView: number
+  sliding: boolean
+  slideWidth: number
+  index: number
+  moveX: number
+  lastDeltaX: number
 }
-
-const Home = () => (
-  <Fragment>
-    <Container>
-      <h3>attributes</h3>
-    </Container>
-    <Container>
-      <h3>equipment</h3>
-    </Container>
-  </Fragment>
-)
 
 class App extends Component<Props, State> {
   state = {
-    screens: [Home, Info],
-    activeView: 0,
     sliding: false,
     slideWidth: 300,
     index: 0,
@@ -39,7 +23,7 @@ class App extends Component<Props, State> {
   }
 
   componentDidMount() {
-    const body = document.querySelector('#slider')
+    const body = document.querySelector('#slider') as HTMLElement
     var hammertime = new Hammer(body)
 
     hammertime.on('pan', ev => {
@@ -62,13 +46,9 @@ class App extends Component<Props, State> {
     })
   }
   render() {
-    const { activeView, screens, moveX, sliding, lastDeltaX } = this.state
-    // eslint-disable-next-line
-    const View = screens[activeView]
+    const { moveX, sliding, lastDeltaX } = this.state
     return (
       <div className="App">
-        {/* <View className={animate} />
-        <span>{animate}</span> */}
         <SliderTest moveX={moveX} sliding={sliding} lastDeltaX={lastDeltaX} />
       </div>
     )
